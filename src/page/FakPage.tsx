@@ -3,6 +3,7 @@ import { Container, Table } from 'react-bootstrap';
 import Fa from '../types/Fa';
 import apiClient from '../utils/apiClient';
 import FaRow from '../components/FaRow';
+import { toast } from 'react-toastify';
 
 const FakPage: React.FC = () => {
     const [fak, setFak] = useState<Fa[]>([]);
@@ -14,12 +15,12 @@ const FakPage: React.FC = () => {
                 setFak(response.data);
             })
             .catch((error) => {
-                console.error('Error fetching data:', error);
+                toast.error('Hiba történt a termékek betöltésekor');
             });
     }, []);
 
     return (
-        <div className="p-5">
+        <div className="p-5" data-testid="container">
             <Table striped bordered hover>
                 <thead>
                     <tr>
